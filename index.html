@@ -3,112 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
+<style>
     header h1 {
         font-family: 'Argesta', serif;
     }
-    </style>
-    <title>Portfolio de Manon</title>
-    <style>
-        body {
-            font-family: Bogart, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px;
-        }
-        section {
-            padding: 20px;
-        }
-        #pdf-container {
-            width: 80%;
-            margin: 20px auto;
-            border: 1px solid #ddd;
-            padding: 20px;
-            background: #f9f9f9;
-        }
-        #pdf-canvas {
-            width: 100%;
-            height: auto;
-        }
-        #controls {
-            margin-top: 10px;
-        }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-</head>
+</style>
+    </head>
 <body>
     <header>
-        <h1>Bienvenue sur mon Portfolio</h1>
+        <h1>Portfolio</h1>
     </header>
-    
-    
+
     <h1>Mes cartes et projets</h1>
-    <div id="pdf-container">
+    <div id="image-container">
         <h2>Croquis de Rillieux-la-Pape</h2>
-        <canvas id="pdf-canvas"></canvas>
-        <div id="controls">
-            <button onclick="goToPreviousPage()">Précédente</button>
-            <button onclick="goToNextPage()">Suivante</button>
-            <button onclick="zoomIn()">Zoom +</button>
-            <button onclick="zoomOut()">Zoom -</button>
-        </div>
+        <img src="cartes/Croquis_Rillieux.jpeg" alt="Croquis de Rillieux-la-Pape">
+         <h2>Affiche sur les espaces naturels de la métropole de Bordeaux</h2>
+        <img src="cartes/Affiche_Bordeaux.png" alt="Affiche de Bordeaux">
+         <h2>Projet QGIS sur le port de Cherbourg</h2>
+        <img src="cartes/Cherbourg.svg" alt="Projet QGIS sur Cherbourg">
+         <h2>Le quartier États-Unis à Lyon</h2>
+        <img src="cartes/Etats_Unis.svg" alt="Carte États-Unis">
+         <h2>Croquis de Rillieux-la-Pape</h2>
+        <img src="cartes/Croquis_Rillieux.jpeg" alt="Croquis de Rillieux-la-Pape">
+         <h2>Croquis de Rillieux-la-Pape</h2>
+        <img src="cartes/Croquis_Rillieux.jpeg" alt="Croquis de Rillieux-la-Pape">
+         <h2>Croquis de Rillieux-la-Pape</h2>
+        <img src="cartes/Croquis_Rillieux.jpeg" alt="Croquis de Rillieux-la-Pape">
     </div>
-    
-    <script>
-        const url = 'cartes/Croquis_Rillieux.pdf'; // Le chemin vers ton PDF
-        let pdfDoc = null;
-        let pageNum = 1;
-        let zoomLevel = 1.0;
-
-        // Initialiser PDF.js
-        pdfjsLib.getDocument(url).promise.then(function(doc) {
-            pdfDoc = doc;
-            renderPage(pageNum);
-        });
-
-        function renderPage(num) {
-            pdfDoc.getPage(num).then(function(page) {
-                const scale = zoomLevel;
-                const viewport = page.getViewport({ scale: scale });
-
-                const canvas = document.getElementById('pdf-canvas');
-                const context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                page.render({
-                    canvasContext: context,
-                    viewport: viewport
-                });
-            });
-        }
-
-        function goToPreviousPage() {
-            if (pageNum <= 1) return;
-            pageNum--;
-            renderPage(pageNum);
-        }
-
-        function goToNextPage() {
-            if (pageNum >= pdfDoc.numPages) return;
-            pageNum++;
-            renderPage(pageNum);
-        }
-
-        function zoomIn() {
-            zoomLevel += 0.1;
-            renderPage(pageNum);
-        }
-
-        function zoomOut() {
-            zoomLevel -= 0.1;
-            renderPage(pageNum);
-        }
-    </script>
 </body>
 </html>
